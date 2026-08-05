@@ -10,6 +10,7 @@ venv/
 *.csv
 *.parquet
 *.pkl
+!models/tfidf_xgboost_pipeline.pkl
 data/raw/
 
 # OS / editor

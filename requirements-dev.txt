@@ -1,0 +1,17 @@
+# Full pipeline dependencies for local development (EDA + training notebooks).
+# Streamlit Cloud uses requirements.txt (dashboard-only). This file is for
+# running notebooks/EDA.ipynb, preprocessing.ipynb, and tfidf_baseline.ipynb.
+
+# Dashboard (also in requirements.txt — kept here for one-shot install)
+streamlit==1.61.0
+spacy==3.8.14
+nltk==3.10.1
+scikit-learn==1.9.0
+xgboost==3.4.0
+numpy==2.5.1
+
+# EDA & training
+pandas>=2.0
+matplotlib>=3.7
+seaborn>=0.12
+jupyterlab>=4.0

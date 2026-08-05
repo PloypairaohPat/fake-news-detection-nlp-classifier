@@ -15,7 +15,17 @@ STOPWORDS = set(stopwords.words("english"))
 
 @st.cache_resource
 def load_nlp():
-    return spacy.load("en_core_web_sm", disable=["parser", "ner"])
+    model_name = "en_core_web_sm"
+    try:
+        return spacy.load(model_name, disable=["parser", "ner"])
+    except OSError:
+        # Streamlit Cloud only runs `pip install -r requirements.txt` — it never
+        # runs the manual `python -m spacy download` step from the README, so the
+        # model has to be fetched here on first boot.
+        from spacy.cli import download
+
+        download(model_name)
+        return spacy.load(model_name, disable=["parser", "ner"])
 
 nlp = load_nlp()
 

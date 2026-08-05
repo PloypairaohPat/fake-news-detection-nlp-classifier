@@ -1,10 +1,16 @@
-pandas>=2.0
-numpy>=1.24
-matplotlib>=3.7
-seaborn>=0.12
-scikit-learn>=1.3
-xgboost>=2.0
-nltk>=3.8
-spacy>=3.7
-streamlit>=1.35
-jupyterlab>=4.0
+# Streamlit Cloud deploy — dashboard-only. For notebooks/training, use requirements-dev.txt.
+# Pinned to the exact versions verified end-to-end against the pickled pipeline
+# in models/tfidf_xgboost_pipeline.pkl. The pickle records it was trained with
+# scikit-learn 1.8.0 (its own embedded version marker); the original xgboost
+# training version isn't recorded anywhere retrievable. Loading with the newer
+# sklearn/xgboost pinned here still works but emits harmless version-mismatch
+# warnings (InconsistentVersionWarning + an XGBoost "re-export with save_model"
+# notice) — verified via a full AppTest run, not just import. Pinning here
+# locks in a version combo that's actually been tested, rather than trusting
+# whatever `>=` resolves to at deploy time.
+streamlit==1.61.0
+spacy==3.8.14
+nltk==3.10.1
+scikit-learn==1.9.0
+xgboost==3.4.0
+numpy==2.5.1
